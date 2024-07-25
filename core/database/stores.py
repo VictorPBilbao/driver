@@ -20,7 +20,7 @@ ACCEPT = "application/json"
 # * making the same request using httpx
 
 httpx.post(f"{DATABASE_URL}/signin", headers={"Accept": ACCEPT,
-           "Content-Type": "application/json"}, json={"user": USER, "pass": PASS})
+           "Content-Type": ACCEPT}, json={"user": USER, "pass": PASS})
 
 
 def create_initial_entries():
