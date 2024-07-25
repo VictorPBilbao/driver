@@ -1,21 +1,21 @@
-# Rental Company Driver API
+# 🚗 Rental Company Driver API
 
 The Rental Company Driver API is a comprehensive solution designed for rental companies to manage their operations efficiently and publish their rates through an open API. This enables Online Travel Agencies (OTAs) and other travel brokers to easily access and consume the information. The API is built using FastAPI, offering high performance and easy scalability.
 
-## Features
+## 🌟 Features
 
-- Store Management: Allows rental companies to manage their store information, including creating new stores and retrieving details of existing stores.
-- Rate Publishing: Enables rental companies to publish their rental rates, making them accessible to OTAs and travel brokers.
-- Query Stores: Supports querying stores based on specific criteria, such as active status.
-- Open API: Provides an open API for OTAs and travel brokers to consume the published rates and store information.
+- **Store Management:** Allows rental companies to manage their store information, including creating new stores and retrieving details of existing stores.
+- **Rate Publishing:** Enables rental companies to publish their rental rates, making them accessible to OTAs and travel brokers.
+- **Query Stores:** Supports querying stores based on specific criteria, such as active status.
+- **Open API:** Provides an open API for OTAs and travel brokers to consume the published rates and store information.
 
-## Getting Started
+## 🚀 Getting Started
 
 ### Prerequisites
 
 Before you begin, ensure you have the following installed:
-- Python 3.8 or higher
-- pip (Python package installer)
+- Python 3.8 or higher 🐍
+- pip (Python package installer) 📦
 
 ### Installation
 
@@ -57,5 +57,13 @@ fastapi dev main.py
 7. Access the API documentation at your [localhost](http://127.0.0.1:8000)
 
 8. **[OPTIONAL]** Open the API documentation in your browser:
-- Swagger UI: `/docs`
-- ReDoc: `/redoc`
+- 📄 Swagger UI: `/docs`
+- 📘 ReDoc: `/redoc`
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit pull requests or open issues to suggest improvements or add new features.
+
+## 📜 License
+
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
