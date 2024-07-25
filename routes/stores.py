@@ -1,8 +1,9 @@
-from math import e
+from calendar import c
 from typing import Annotated
 
-from fastapi import APIRouter, Body, HTTPException, Path, responses, status
+from fastapi import APIRouter, Body, HTTPException, Path, status
 
+from ..core.database.stores import create_initial_entries
 from ..core.schemas.stores import Store, StoreCreate
 
 route_stores = APIRouter(
@@ -18,6 +19,12 @@ def get_stores(active: bool | None = None) -> list[Store]:
     if active is None:
         return stores_list
     return [store for store in stores_list if store.active == active]
+
+
+@route_stores.get("/start")
+def start() -> str:
+    create_initial_entries()
+    return "Starting..."
 
 
 @route_stores.post("", summary="Create a store", description="Create a new store", response_description="A dictionary with a success message", responses={
