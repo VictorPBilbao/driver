@@ -1,9 +1,9 @@
-from calendar import c
-from typing import Annotated
+from os import read
+from typing import Annotated, Any
 
 from fastapi import APIRouter, Body, HTTPException, Path, status
 
-from ..core.database.stores import create_initial_entries
+from ..core.database.stores import create_initial_entries, read_stores
 from ..core.schemas.stores import Store, StoreCreate
 
 route_stores = APIRouter(
@@ -15,16 +15,14 @@ stores_list: list[Store] = []
 
 
 @route_stores.get("", summary="List stores", description="Get a list of all stores that match the query", response_description="A list of stores")
-def get_stores(active: bool | None = None) -> list[Store]:
-    if active is None:
-        return stores_list
-    return [store for store in stores_list if store.active == active]
+def get_stores(active: bool | None = None) -> dict[str, list | str]:
+    return read_stores()
 
 
 @route_stores.get("/start")
-def start() -> str:
+def start() -> dict[str, list[Any] | str]:
     create_initial_entries()
-    return "Starting..."
+    return {'result': [{'IATA': 'CWB', 'active': True, 'address': {'city': 'Curitiba', 'country': 'BR', 'number': '1241', 'state': 'PR', 'street': 'Avenida Rocha Pombo', 'zip_code': '83010-900'}, 'contacts': {'email': [{'email': 'victor.pasini@rentcars.com', 'name': 'Main', 'purpose': 'Email Geral'}, {'email': 'ana.claudia@localiza.com', 'name': 'Email para no-shows', 'purpose': 'Email para no-shows gerais'}], 'emergency_phone': '+55 41 3381-1516', 'phone': [{'name': 'Main', 'number': '+55 41 3381-1515', 'purpose': 'Contato Principal'}, {'name': 'Informações e no-shows', 'number': '+55 41 3381-1515', 'purpose': 'Informações e no-shows'}], 'website': ''}, 'id': 'Store:4tqov1kq93z7i37zmpzs', 'name': 'Curitiba Airport'}, {'IATA': 'CWB', 'active': True, 'address': {'city': 'Curitiba', 'country': 'BR', 'number': '1241', 'state': 'PR', 'street': 'Avenida Rocha Pombo', 'zip_code': '83010-900'}, 'contacts': {'email': [{'email': 'victor.pasini@rentcars.com', 'name': 'Main', 'purpose': 'Email Geral'}, {'email': 'ana.claudia@localiza.com', 'name': 'Email para no-shows', 'purpose': 'Email para no-shows gerais'}], 'emergency_phone': '+55 41 3381-1516', 'phone': [{'name': 'Main', 'number': '+55 41 3381-1515', 'purpose': 'Contato Principal'}, {'name': 'Informações e no-shows', 'number': '+55 41 3381-1515', 'purpose': 'Informações e no-shows'}], 'website': ''}, 'id': 'Store:c8o5beho4wjvpfo78yn7', 'name': 'Curitiba Airport'}, {'IATA': 'CWB', 'active': True, 'address': {'city': 'Curitiba', 'country': 'BR', 'number': '1241', 'state': 'PR', 'street': 'Avenida Rocha Pombo', 'zip_code': '83010-900'}, 'contacts': {'email': [{'email': 'victor.pasini@rentcars.com', 'name': 'Main', 'purpose': 'Email Geral'}, {'email': 'ana.claudia@localiza.com', 'name': 'Email para no-shows', 'purpose': 'Email para no-shows gerais'}], 'emergency_phone': '+55 41 3381-1516', 'phone': [{'name': 'Main', 'number': '+55 41 3381-1515', 'purpose': 'Contato Principal'}, {'name': 'Informações e no-shows', 'number': '+55 41 3381-1515', 'purpose': 'Informações e no-shows'}], 'website': ''}, 'id': 'Store:lp6km9ouynvt58376ptd', 'name': 'Curitiba Airport'}, {'IATA': 'CWB', 'active': True, 'address': {'city': 'Curitiba', 'country': 'BR', 'number': '1241', 'state': 'PR', 'street': 'Avenida Rocha Pombo', 'zip_code': '83010-900'}, 'contacts': {'email': [{'email': 'victor.pasini@rentcars.com', 'name': 'Main', 'purpose': 'Email Geral'}, {'email': 'ana.claudia@localiza.com', 'name': 'Email para no-shows', 'purpose': 'Email para no-shows gerais'}], 'emergency_phone': '+55 41 3381-1516', 'phone': [{'name': 'Main', 'number': '+55 41 3381-1515', 'purpose': 'Contato Principal'}, {'name': 'Informações e no-shows', 'number': '+55 41 3381-1515', 'purpose': 'Informações e no-shows'}], 'website': ''}, 'id': 'Store:oxg5abmcuqwxcvn0iju8', 'name': 'Curitiba Airport'}, {'IATA': 'CWB', 'active': True, 'address': {'city': 'Curitiba', 'country': 'BR', 'id': 'Address:j6l14a6rutsxpnjqdiki', 'number': '1241', 'state': 'PR', 'street': 'Avenida Rocha Pombo', 'zip_code': '83010-900'}, 'contacts': {'email': [{'email': 'victor.pasini@rentcars.com', 'name': 'Main', 'purpose': 'Email Geral'}, {'email': 'ana.claudia@localiza.com', 'name': 'Email para no-shows', 'purpose': 'Email para no-shows gerais'}], 'emergency_phone': '+55 41 3381-1516', 'phone': [{'name': 'Main', 'number': '+55 41 3381-1515', 'purpose': 'Contato Principal'}, {'name': 'Informações e no-shows', 'number': '+55 41 3381-1515', 'purpose': 'Informações e no-shows'}], 'website': ''}, 'id': 'Store:u5yua1xhrvgfwuv6gfsu', 'name': 'Curitiba Airport'}, {'IATA': 'CWB', 'active': True, 'address': {'city': 'Curitiba', 'country': 'BR', 'number': '1241', 'state': 'PR', 'street': 'Avenida Rocha Pombo', 'zip_code': '83010-900'}, 'contacts': {'email': [{'email': 'victor.pasini@rentcars.com', 'name': 'Main', 'purpose': 'Email Geral'}, {'email': 'ana.claudia@localiza.com', 'name': 'Email para no-shows', 'purpose': 'Email para no-shows gerais'}], 'emergency_phone': '+55 41 3381-1516', 'phone': [{'name': 'Main', 'number': '+55 41 3381-1515', 'purpose': 'Contato Principal'}, {'name': 'Informações e no-shows', 'number': '+55 41 3381-1515', 'purpose': 'Informações e no-shows'}], 'website': ''}, 'id': 'Store:x4ap8wxqsv1ejtzcp3b7', 'name': 'Curitiba Airport'}], 'status': 'OK', 'time': '210.6µs'}
 
 
 @route_stores.post("", summary="Create a store", description="Create a new store", response_description="A dictionary with a success message", responses={
