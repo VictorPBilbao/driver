@@ -13,13 +13,13 @@ route_stores = APIRouter(
 stores_list: list[Store] = []
 
 
-@route_stores.get("", summary="List stores", description="Get a list of all stores that match the query", response_description="A list of stores")
-def get_stores(active: bool | None = None) -> dict[str, list | str]:
+@route_stores.get("", summary="List stores by IATA", description="Get a list of all stores that match the query", response_description="A list of stores")
+def get_all_stores(active: bool | None = None) -> dict[str, list | str]:
     return read_stores()
 
 
 @route_stores.get("/start")
-def start() -> dict[str, list[Any] | str]:
+def populate_stores() -> dict[str, list[Any] | str]:
     create_initial_entries()
     return {"message": "Stores created successfully!"}
 
@@ -56,7 +56,7 @@ def create_store(store: Annotated[StoreCreate, Body(
 
 
 @ route_stores.get("/{iata}", summary="Get a store", description="Get a store by its IATA code", response_description="The store with the specified IATA code")
-def get_store(iata: Annotated[str, Path(
+def get_store_by_iata(iata: Annotated[str, Path(
         description="This is the [**International Air Transport Association**](https://www.iata.org/en/services/codes/) code, that identifies each store in the system, not only in airports",
         example="SCL",
         min_length=3,
@@ -69,7 +69,7 @@ def get_store(iata: Annotated[str, Path(
 
 
 @ route_stores.delete("/{iata}", summary="Delete a store", description="Delete a store by its IATA code", status_code=status.HTTP_204_NO_CONTENT)
-def delete_store(iata: Annotated[str, Path(
+def delete_store_by_iata(iata: Annotated[str, Path(
     description="This is the [**International Air Transport Association**](https://www.iata.org/en/services/codes/) code, that identifies each store in the system, not only in airports",
     example="SCL",
     min_length=3,
@@ -94,7 +94,7 @@ def delete_store(iata: Annotated[str, Path(
         }
     }
 })
-def update_store(iata: Annotated[str, Path(
+def update_store_by_iata(iata: Annotated[str, Path(
     description="This is the [**International Air Transport Association**](https://www.iata.org/en/services/codes/) code, that identifies each store in the system, not only in airports",
     example="SCC",
     min_length=3,
