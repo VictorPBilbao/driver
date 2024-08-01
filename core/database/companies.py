@@ -25,7 +25,7 @@ def delete_company_by_slug_database(slug: str) -> list[dict]:
     return surreal_sql(f"DELETE Company:{slug}")
 
 
-def update_company_by_slug_database(slug: str, company: Company) -> list[dict] | dict:
+def update_company_by_slug_database(slug: str, company: Company) -> list[dict]:
     def slug_not_in_databse(slug: str) -> bool:
         return f"Company:{slug}" not in {company["id"] for company in surreal_sql("SELECT id FROM Company")[0]["result"]}
 
